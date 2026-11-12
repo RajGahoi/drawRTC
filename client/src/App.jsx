@@ -23,7 +23,11 @@ import {
 } from "./atoms";
 import { useSocket } from "./Context";
 
-const PORT = "http://localhost:8000"; 
+const PORT =
+  import.meta.env.VITE_BACKEND_URL ||
+  (typeof window !== "undefined" && window.location.hostname !== "localhost"
+    ? window.location.origin
+    : "http://localhost:8000"); 
 
 function App() {
   const [showMenu, setShowMenu] = useRecoilState(showMenuState);

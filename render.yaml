@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: drawrtc
+    env: node
+    plan: free
+    region: oregon
+    buildCommand: npm --prefix client install && npm --prefix client run build && npm --prefix api install
+    startCommand: node api/index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+    healthCheckPath: /health
